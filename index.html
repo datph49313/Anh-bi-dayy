@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANH BI Day</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-image: url('unnamed.jpg'); background-size: cover; background-position: center; color: white; }
+        .container { display: flex; flex-direction: column; align-items: center; margin-top: 50px; }
+        .dice-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .dice { font-size: 50px; }
+        .bet-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .bet-buttons button { padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; border: none; border-radius: 10px; }
+        .tai-btn { background-color: #ffcc00; color: black; }
+        .xiu-btn { background-color: #00ccff; color: white; }
+        .allin-btn { background-color: #ff6600; color: rgb(163, 33, 33); margin-top: 20px; }
+        .roll-btn { background-color: #ff3333; color: white; margin-top: 20px; }
+        #result { font-size: 22px; margin-top: 20px; font-weight: bold; }
+    </style>
+    <script>
+        function playTaiXiu() {
+            let diceResults = [];
+            let totalDice = 0;
+            let diceContainer = document.getElementById("dice-container");
+            diceContainer.innerHTML = "";
+            
+            for (let i = 0; i < 3; i++) {
+                let dice = Math.floor(Math.random() * 6) + 1;
+                diceResults.push(dice);
+                totalDice += dice;
+                
+                let diceDiv = document.createElement("div");
+                diceDiv.classList.add("dice");
+                diceDiv.innerText = "🎲";
+                diceContainer.appendChild(diceDiv);
+            }
+            let result = totalDice >= 11 ? "Tài" : "Xỉu";
+            document.getElementById("result").innerText = `Kết quả: ${diceResults.join(", ")}\n Tổng: ${totalDice} - ${result}`;
+        }
+        
+        function allIn() {
+            alert("Bạn đã đặt cược tất cả!");
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ANH BI DAYYYYY</h1>
+        <div class="bet-buttons">
+            <button class="tai-btn">Tài</button>
+            <button class="xiu-btn">Xỉu</button>
+        </div>
+        <button class="allin-btn" onclick="allIn()">All In</button>
+        <button class="roll-btn" onclick="playTaiXiu()">Xóc Đê</button>
+        <div id="result"></div>
+        <div class="dice-container" id="dice-container">
+            <div class="dice">🎲</div>
+            <div class="dice">🎲</div>
+            <div class="dice">🎲</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
